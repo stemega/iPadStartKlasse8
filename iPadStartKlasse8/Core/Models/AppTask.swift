@@ -13,6 +13,7 @@ struct AppTask: Identifiable, Codable {
     var title: String
     var description: String
     var evidence: EvidenceType
+    var isCompleted: Bool = false
 }
 
 extension AppTask {

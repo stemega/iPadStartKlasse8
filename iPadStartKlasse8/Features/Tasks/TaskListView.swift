@@ -3,12 +3,17 @@ import SwiftUI
 /// Displays a simple list of demo tasks with detail view
 
 struct TaskListView: View {
-    var tasks: [AppTask]
+    @Binding var tasks: [AppTask]
 
     var body: some View {
-        List(tasks) { task in
-            NavigationLink(destination: TaskDetailView(task: task)) {
-                Text(task.title)
+        List {
+            ForEach($tasks) { $task in
+                NavigationLink(destination: TaskDetailView(task: $task)) {
+                    HStack {
+                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                        Text(task.title)
+                    }
+                }
             }
         }
         .navigationTitle("Aufgaben")
@@ -16,12 +21,13 @@ struct TaskListView: View {
 }
 
 struct TaskDetailView: View {
-    var task: AppTask
+    @Binding var task: AppTask
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text(task.description)
             Text("Nachweis: \(task.evidence.rawValue)")
+            Toggle("Erledigt", isOn: $task.isCompleted)
         }
         .padding()
         .navigationTitle(task.title)
@@ -29,7 +35,8 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    NavigationStack {
-        TaskListView(tasks: AppTask.sampleTasks)
+    @Previewable @State var demoTasks = AppTask.sampleTasks
+    return NavigationStack {
+        TaskListView(tasks: $demoTasks)
     }
 }
