@@ -24,6 +24,6 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    @State var student = Student(id: UUID(), firstName: "", lastName: "", className: "", studentID: "")
+    @Previewable @State var student = Student(id: UUID(), firstName: "", lastName: "", className: "", studentID: "")
     return OnboardingView(student: $student) {}
 }
