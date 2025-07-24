@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  iPadStartKlasse8
-//
-//  Created by Stefan Megerle on 24.07.25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var student = Student(id: UUID(), firstName: "", lastName: "", className: "", studentID: "")
+    @State private var isRegistered = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if isRegistered {
+            DashboardView(student: student)
+        } else {
+            OnboardingView(student: $student) {
+                isRegistered = true
+            }
         }
-        .padding()
     }
 }
 
