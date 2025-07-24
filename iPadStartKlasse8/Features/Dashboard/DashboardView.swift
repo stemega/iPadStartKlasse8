@@ -1,7 +1,6 @@
 import SwiftUI
 
 // Simple dashboard displaying a welcome message and link to tasks
-
 struct DashboardView: View {
     var student: Student
 
@@ -12,6 +11,7 @@ struct DashboardView: View {
                     .font(.title)
                 ProgressView(value: 0.2)
                     .progressViewStyle(.linear)
+                Text("Hier werden deine Aufgaben angezeigt.")
                 NavigationLink("Zu deinen Aufgaben") {
                     TaskListView(tasks: AppTask.sampleTasks)
                 }
