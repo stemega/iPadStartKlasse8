@@ -9,12 +9,20 @@ struct TaskListView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selectedTaskID) {
-                ForEach($tasks) { $task in
-                    HStack {
-                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                        Text(task.title)
+                ForEach(Subject.allCases) { subject in
+                    let indices = tasks.indices.filter { tasks[$0].subject == subject }
+                    if !indices.isEmpty {
+                        Section(subject.rawValue) {
+                            ForEach(indices, id: \.self) { index in
+                                let task = tasks[index]
+                                HStack {
+                                    Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                    Text(task.title)
+                                }
+                                .tag(task.id)
+                            }
+                        }
                     }
-                    .tag(task.id)
                 }
             }
             .navigationTitle("Aufgaben")
