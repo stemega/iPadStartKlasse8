@@ -53,9 +53,8 @@ struct TaskDetailView: View {
                 }
             }
             if task.evidence == .video && task.subject == .kunst {
-                NavigationLink("Video erstellen") {
-                    VideoCreationView()
-                }
+                VideoCreationView()
+                    .frame(height: 315)
             }
         }
         .padding()
