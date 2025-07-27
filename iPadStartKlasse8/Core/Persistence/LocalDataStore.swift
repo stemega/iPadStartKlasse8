@@ -10,7 +10,12 @@ struct LocalDataStore {
 
     init(fileManager: FileManager = .default) {
         self.fileManager = fileManager
-        let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let documents: URL
+        if let container = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Constants.appGroupID) {
+            documents = container
+        } else {
+            documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
         studentURL = documents.appendingPathComponent("student.json")
         tasksURL = documents.appendingPathComponent("tasks.json")
     }

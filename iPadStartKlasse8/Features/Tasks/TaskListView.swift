@@ -47,6 +47,11 @@ struct TaskDetailView: View {
             Text(task.description)
             Text("Nachweis: \(task.evidence.rawValue)")
             Toggle("Erledigt", isOn: $task.isCompleted)
+            if task.evidence == .audio {
+                NavigationLink("Importierte Audios") {
+                    AudioEvidenceListView()
+                }
+            }
         }
         .padding()
         .navigationTitle(task.title)
