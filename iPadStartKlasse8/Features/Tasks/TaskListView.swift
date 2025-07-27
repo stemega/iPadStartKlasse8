@@ -5,9 +5,10 @@ import SwiftUI
 struct TaskListView: View {
     @Binding var tasks: [AppTask]
     @State private var selectedTaskID: AppTask.ID?
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             List(selection: $selectedTaskID) {
                 ForEach(Subject.allCases) { subject in
                     let indices = tasks.indices.filter { tasks[$0].subject == subject }
