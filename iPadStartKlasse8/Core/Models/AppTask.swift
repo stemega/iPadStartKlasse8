@@ -19,7 +19,7 @@ enum Subject: String, Codable, CaseIterable, Identifiable {
     var id: String { rawValue }
 }
 
-struct AppTask: Identifiable, Codable {
+struct AppTask: Identifiable, Codable, Equatable {
     var id: UUID
     var title: String
     var description: String
