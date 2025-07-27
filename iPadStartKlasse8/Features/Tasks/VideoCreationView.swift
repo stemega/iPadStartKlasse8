@@ -6,9 +6,13 @@ struct VideoCreationView: View {
     private let videoURL = URL(string: "https://www.youtube.com/embed/Ha9E9Zmthjw?si=zTEH0gPARYffhO0D")!
 
     var body: some View {
-        WebView(url: videoURL)
-            .navigationTitle("Video erstellen")
-            .navigationBarTitleDisplayMode(.inline)
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Dieses YouTube-Video hilft dir weiter, falls du Fragen hast.")
+                .font(.headline)
+            WebView(url: videoURL)
+        }
+        .navigationTitle("Video erstellen")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
