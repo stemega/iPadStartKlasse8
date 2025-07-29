@@ -1,71 +1,21 @@
-Modular Coding Plan
+FAQ App Coding Plan
 
-Below is a sequential plan that maps the PRD requirements into coding tasks.
-Modules are referenced according to the PRD’s proposed folder structure:
+1. Setup
+- Provide basic SwiftUI project targeting iOS 17.
+- Store small preferences using `LocalDataStore`.
+- Bundle a `Resources/FAQItems.json` file.
 
-WirStartenApp/
-├── Core/            (models, persistence, extensions)
-├── Features/        (onboarding, dashboard, tasks, portfolio, settings)
-├── Shared/          (UI components, services, resources)
-└── Supporting Files/
-Phase 1: Foundation (Weeks 1‑4)
-Project Setup & CI/CD
-Configure Xcode project for iOS 17+.
-Set up Swift Package Manager dependencies (Zip library, PDFKit, etc.).
-Add fastlane or Xcode Cloud for continuous integration.
-Core Data Models & Persistence
-Implement Student, Task, and Evidence models using SwiftData.
-Add encryption logic for local persistence.
-Create Core/Persistence helpers for save/load operations.
-Onboarding & User Registration
-Feature module: Features/Onboarding/
-Build registration view with fields (Vorname, Nachname, Klasse, ID).
-Validate and hash data to prevent duplicates.
-Dashboard Skeleton
-Feature module: Features/Dashboard/
-Show list of skill areas (as cards) with progress ring.
-Implement “Continue where I left off” quick action.
-Sample Tasks
-Feature module: Features/Tasks/
-Provide five demo tasks illustrating each evidence type.
-Phase 2: Core Features (Weeks 5‑7)
-Full Task Management
-Implement task list, detail view, and editing.
-Support self-confirmation, file upload, link validation, and combined evidence.
-File Upload & Storage
-Use PhotosUI and AVFoundation for media capture.
-Enforce 50 MB file size limit and 500 MB total storage cap.
-Add compression for older uploads.
-Portfolio View
-Feature module: Features/Portfolio/
-Display tasks chronologically with filters per subject.
-Basic Export
-Export to PDF using PDFKit.
-Bundle uploads into a ZIP file and enable sharing via AirDrop/Files.
-Phase 3: Polish & Testing (Weeks 8‑10)
-Gamification
-Implement milestone badges and progress celebrations.
-Accessibility & Performance
-Audit all views for VoiceOver and Dynamic Type.
-Ensure dashboard and task transitions meet the <0.5 s target.
-Extended Export Options
-Include .json metadata.
-Allow selective export (by subject or date).
-Automated Tests
-Unit tests for models and persistence.
-UI tests for main flows (onboarding, task completion, export).
-Phase 4: Pilot (Weeks 11‑12)
-Beta Distribution
-Provide TestFlight builds to two classes.
-Collect feedback inside the app (survey).
-Bug Fixes & Feedback Integration
-Address issues from pilot testing.
-Refine UI/UX and performance bottlenecks.
-Phase 5: Rollout (Week 13)
-App Store/Enterprise Deployment
-Prepare App Store/enterprise certificates.
-Finalize metadata and screenshots.
-Documentation & Support
-Produce in-app help and teacher guides.
-Set up email or ticket system for support.
-This plan translates the PRD requirements into concrete development steps, following the proposed modular structure. Each phase builds upon the previous one to create the fully functional iPad app.
+2. Onboarding
+- Simple introduction screen shown on first launch.
+- Persist completion in `UserDefaults`.
+
+3. Help Section
+- `FAQItem` model and `FAQStore` for loading JSON data.
+- `HelpHomeView` lists categories of FAQ items.
+- `FAQListView` shows questions per category with search.
+- `FAQDetailView` displays answers.
+
+4. Tests
+- Unit test verifying FAQ data loads from the bundle.
+
+Future improvements may include remote content updates and a contact form.
