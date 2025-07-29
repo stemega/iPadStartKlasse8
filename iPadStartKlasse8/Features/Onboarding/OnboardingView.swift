@@ -9,7 +9,6 @@ struct OnboardingView: View {
                 .font(.title)
 
             Text("Diese App unterstützt dich beim Einstieg in den Unterricht mit dem iPad.")
- main
                 .multilineTextAlignment(.center)
             Button("Los geht's") {
                 onContinue()
