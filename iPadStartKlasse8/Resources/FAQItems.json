@@ -1,0 +1,20 @@
+[
+  {
+    "id": "8e678d11-9107-4ecf-ad81-34f9ec663d94",
+    "question": "Wie melde ich mich mit meinem iPad an der Schule an?",
+    "answer": "Schalte dein iPad ein und verbinde dich mit dem Schul-WLAN...",
+    "category": "Erste Schritte"
+  },
+  {
+    "id": "693ab7b3-621b-4a09-b991-f6e8f278bcf2",
+    "question": "Welche Apps brauche ich f\u00fcr den Unterricht?",
+    "answer": "In der Regel nutzt du Apps wie GoodNotes, Pages und Safari...",
+    "category": "Apps & Tools"
+  },
+  {
+    "id": "cffbbca4-47fc-448a-9be7-eeb48338f29c",
+    "question": "Was tun bei technischen Problemen?",
+    "answer": "Starte dein iPad neu und \u00fcberpr\u00fcfe die WLAN-Einstellungen...",
+    "category": "Troubleshooting"
+  }
+]

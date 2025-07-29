@@ -1,52 +1,14 @@
 import Foundation
 
-/// Simple helper to persist student and task data locally as JSON files.
+/// Simple helper to persist small preferences locally.
 struct LocalDataStore {
-    static let shared = LocalDataStore()
+    private static let introKey = "hasSeenIntro"
 
-    private let studentURL: URL
-    private let tasksURL: URL
-    private let fileManager: FileManager
-
-    init(fileManager: FileManager = .default) {
-        self.fileManager = fileManager
-        let documents: URL
-        if let container = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Constants.appGroupID) {
-            documents = container
-        } else {
-            documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        }
-        studentURL = documents.appendingPathComponent("student.json")
-        tasksURL = documents.appendingPathComponent("tasks.json")
+    static func loadHasSeenIntro() -> Bool {
+        UserDefaults.standard.bool(forKey: introKey)
     }
 
-    // MARK: Student
-    func loadStudent() -> Student? {
-        guard let data = try? Data(contentsOf: studentURL) else { return nil }
-        return try? JSONDecoder().decode(Student.self, from: data)
-    }
-
-    func save(student: Student) {
-        do {
-            let data = try JSONEncoder().encode(student)
-            try data.write(to: studentURL, options: .atomic)
-        } catch {
-            print("Failed to save student: \(error)")
-        }
-    }
-
-    // MARK: Tasks
-    func loadTasks() -> [AppTask] {
-        guard let data = try? Data(contentsOf: tasksURL) else { return [] }
-        return (try? JSONDecoder().decode([AppTask].self, from: data)) ?? []
-    }
-
-    func save(tasks: [AppTask]) {
-        do {
-            let data = try JSONEncoder().encode(tasks)
-            try data.write(to: tasksURL, options: .atomic)
-        } catch {
-            print("Failed to save tasks: \(error)")
-        }
+    static func save(hasSeenIntro: Bool) {
+        UserDefaults.standard.set(hasSeenIntro, forKey: introKey)
     }
 }
