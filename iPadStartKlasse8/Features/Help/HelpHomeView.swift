@@ -42,7 +42,11 @@ struct HelpHomeView: View {
                                 .multilineTextAlignment(.center)
                         }
                         .padding(.horizontal, 20)
+
+                        .padding(.top, 32)
+
                         .padding(.top, 8)
+
                         .padding(.bottom, 12)
 
                         // Categories grid
@@ -67,7 +71,11 @@ struct HelpHomeView: View {
                                         itemCount: items.filter { $0.category == category }.count
                                     )
                                 }
+
+                                .buttonStyle(PressableButtonStyle())
+
                                 .buttonStyle(PlainButtonStyle())
+
                             }
                         }
                         .padding(.horizontal, 20)
