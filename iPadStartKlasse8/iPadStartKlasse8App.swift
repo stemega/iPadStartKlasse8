@@ -12,6 +12,7 @@ struct iPadStartKlasse8App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .buttonStyle(PressableButtonStyle())
         }
     }
 }

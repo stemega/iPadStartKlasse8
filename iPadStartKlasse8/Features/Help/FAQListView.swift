@@ -41,7 +41,7 @@ struct FAQListView: View {
                             searchText: searchText
                         )
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(PressableButtonStyle())
                 }
                 
                 // Empty state

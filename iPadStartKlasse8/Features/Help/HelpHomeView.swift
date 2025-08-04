@@ -20,63 +20,71 @@ struct HelpHomeView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    // Header section
-                    VStack(spacing: 12) {
-                        Text("Wie kann ich dir helfen?")
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                        
-                        Text("Finde schnell Antworten auf deine iPad-Fragen")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 8)
-                    .padding(.bottom, 12)
-                    
-                    // Categories grid
-                    LazyVGrid(
-                        columns: [
-                            GridItem(.flexible(), spacing: 12),
-                            GridItem(.flexible(), spacing: 12)
-                        ],
-                        spacing: 16
-                    ) {
-                        ForEach(categoriesWithIcons, id: \.0) { category, icon, description in
-                            NavigationLink {
-                                FAQListView(
-                                    title: category, 
-                                    items: items.filter { $0.category == category }
-                                )
-                            } label: {
-                                CategoryCard(
-                                    title: category,
-                                    icon: icon,
-                                    description: description,
-                                    itemCount: items.filter { $0.category == category }.count
-                                )
-                            }
-                            .buttonStyle(PlainButtonStyle())
+            ZStack {
+                Image("DashboardBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .blur(radius: 20)
+                    .ignoresSafeArea()
+
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        // Header section
+                        VStack(spacing: 12) {
+                            Text("Wie kann ich dir helfen?")
+                                .font(.system(size: 28, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                                .multilineTextAlignment(.center)
+
+                            Text("Finde schnell Antworten auf deine iPad-Fragen")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
                         }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 32)
+                        .padding(.bottom, 12)
+
+                        // Categories grid
+                        LazyVGrid(
+                            columns: [
+                                GridItem(.flexible(), spacing: 12),
+                                GridItem(.flexible(), spacing: 12)
+                            ],
+                            spacing: 16
+                        ) {
+                            ForEach(categoriesWithIcons, id: \.0) { category, icon, description in
+                                NavigationLink {
+                                    FAQListView(
+                                        title: category,
+                                        items: items.filter { $0.category == category }
+                                    )
+                                } label: {
+                                    CategoryCard(
+                                        title: category,
+                                        icon: icon,
+                                        description: description,
+                                        itemCount: items.filter { $0.category == category }.count
+                                    )
+                                }
+                                .buttonStyle(PressableButtonStyle())
+                            }
+                        }
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
-            }
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color(.systemBackground),
-                        Color(.systemBlue).opacity(0.02)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
+                .background(
+                    LinearGradient(
+                        colors: [
+                            Color(.systemBackground).opacity(0.8),
+                            Color(.systemBlue).opacity(0.02)
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
                 )
-            )
+            }
             .navigationTitle("iPad-Hilfe")
             .navigationBarTitleDisplayMode(.large)
         }
