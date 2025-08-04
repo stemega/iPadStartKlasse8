@@ -3,25 +3,20 @@ import SwiftUI
 struct HelpHomeView: View {
     let items: [FAQItem]
 
-    private var categoriesWithIcons: [(String, String, String)] {
-        let categoryData: [String: (String, String)] = [
-            "Erste Schritte": ("play.circle.fill", "Grundlagen für den Start"),
-            "Apps & Tools": ("square.grid.2x2.fill", "Wichtige Apps und Werkzeuge"),
-            "Troubleshooting": ("wrench.and.screwdriver.fill", "Probleme lösen"),
-            "Dateien & Organisation": ("folder.fill", "Ordnung in deinen Dateien"),
-            "Kommunikation & Zusammenarbeit": ("person.2.fill", "Teamwork und Austausch"),
-            "Sicherheit & Verantwortung": ("shield.fill", "Sicher und verantwortlich"),
-            "Tipps & Tricks": ("lightbulb.fill", "Profi-Tipps für Fortgeschrittene"),
-            "Multimedia & Projekte": ("video.circle.fill", "Kreative Projekte")
-        ]
-        
-        return Set(items.map { $0.category })
-            .sorted()
-            .compactMap { category in
-                guard let (icon, description) = categoryData[category] else { return nil }
-                return (category, icon, description)
-            }
-    }
+    /// Static list of available categories with their icons and descriptions.
+    ///
+    /// Using a predefined list ensures that the home screen always shows
+    /// navigation options, even if the FAQ data fails to load or is empty.
+    private let categoriesWithIcons: [(String, String, String)] = [
+        ("Erste Schritte", "play.circle.fill", "Grundlagen für den Start"),
+        ("Apps & Tools", "square.grid.2x2.fill", "Wichtige Apps und Werkzeuge"),
+        ("Troubleshooting", "wrench.and.screwdriver.fill", "Probleme lösen"),
+        ("Dateien & Organisation", "folder.fill", "Ordnung in deinen Dateien"),
+        ("Kommunikation & Zusammenarbeit", "person.2.fill", "Teamwork und Austausch"),
+        ("Sicherheit & Verantwortung", "shield.fill", "Sicher und verantwortlich"),
+        ("Tipps & Tricks", "lightbulb.fill", "Profi-Tipps für Fortgeschrittene"),
+        ("Multimedia & Projekte", "video.circle.fill", "Kreative Projekte")
+    ]
 
     var body: some View {
         NavigationStack {
