@@ -42,18 +42,13 @@ struct HelpHomeView: View {
                                 .multilineTextAlignment(.center)
                         }
                         .padding(.horizontal, 20)
-
                         .padding(.top, 32)
-
-                        .padding(.top, 8)
-
                         .padding(.bottom, 12)
 
                         // Categories grid
                         LazyVGrid(
                             columns: [
-                                GridItem(.flexible(), spacing: 12),
-                                GridItem(.flexible(), spacing: 12)
+                                GridItem(.adaptive(minimum: 300), spacing: 12)
                             ],
                             spacing: 16
                         ) {
@@ -73,8 +68,6 @@ struct HelpHomeView: View {
                                 }
 
                                 .buttonStyle(PressableButtonStyle())
-
-                                .buttonStyle(PlainButtonStyle())
 
                             }
                         }
@@ -151,7 +144,7 @@ struct CategoryCard: View {
             }
         }
         .padding(16)
-        .frame(height: 140)
+        .frame(maxWidth: .infinity, minHeight: 140)
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.secondarySystemBackground))
