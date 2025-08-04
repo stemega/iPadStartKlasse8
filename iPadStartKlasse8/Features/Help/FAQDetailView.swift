@@ -34,6 +34,7 @@ struct FAQDetailView: View {
                                 .font(.title3)
                                 .foregroundColor(isFavorited ? .red : .secondary)
                         }
+                        .buttonStyle(PressableButtonStyle())
                     }
                 }
                 .padding(20)
@@ -352,7 +353,7 @@ struct QuickActionButton: View {
             HStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.subheadline)
-                
+
                 Text(title)
                     .font(.subheadline)
                     .fontWeight(.medium)
@@ -363,6 +364,7 @@ struct QuickActionButton: View {
             .background(Color.blue.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .buttonStyle(PressableButtonStyle())
     }
 }
 

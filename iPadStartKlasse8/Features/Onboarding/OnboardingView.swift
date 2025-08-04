@@ -90,7 +90,7 @@ struct OnboardingView: View {
                             Text("Los geht's")
                                 .font(.headline)
                                 .fontWeight(.semibold)
-                            
+
                             Image(systemName: "arrow.right")
                                 .font(.headline)
                         }
@@ -99,14 +99,15 @@ struct OnboardingView: View {
                         .frame(height: 56)
                         .background(
                             LinearGradient(
-                                colors: [.blue, .indigo], 
-                                startPoint: .leading, 
+                                colors: [.blue, .indigo],
+                                startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
                         .cornerRadius(16)
                         .shadow(color: .blue.opacity(0.3), radius: 8, x: 0, y: 4)
                     }
+                    .buttonStyle(PressableButtonStyle())
                     .padding(.horizontal, 32)
                     .padding(.bottom, 40)
                 }
