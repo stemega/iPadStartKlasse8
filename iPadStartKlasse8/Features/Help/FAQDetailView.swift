@@ -121,7 +121,17 @@ struct FAQDetailView: View {
 
 struct FormattedAnswerView: View {
     let answer: String
-    
+
+    /// Converts Markdown formatted strings into `Text` views.
+    /// Falls back to a plain `Text` if the conversion fails.
+    private func markdown(_ string: String) -> Text {
+        if let attributed = try? AttributedString(markdown: string) {
+            return Text(attributed)
+        } else {
+            return Text(string)
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(formatAnswer(), id: \.id) { section in
@@ -141,8 +151,8 @@ struct FormattedAnswerView: View {
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.blue)
-                                
-                                Text(item)
+
+                                markdown(item)
                                     .font(.subheadline)
                                     .foregroundColor(.primary)
                                     .fixedSize(horizontal: false, vertical: true)
@@ -150,20 +160,20 @@ struct FormattedAnswerView: View {
                         }
                     }
                     .padding(.leading, 8)
-                    
+
                 case .paragraph:
-                    Text(section.content)
+                    markdown(section.content)
                         .font(.subheadline)
                         .foregroundColor(.primary)
                         .fixedSize(horizontal: false, vertical: true)
-                    
+
                 case .important:
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .font(.subheadline)
                             .foregroundColor(.orange)
-                        
-                        Text(section.content)
+
+                        markdown(section.content)
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(.primary)
@@ -172,14 +182,14 @@ struct FormattedAnswerView: View {
                     .padding(12)
                     .background(Color.orange.opacity(0.1))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                    
+
                 case .tip:
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "lightbulb.fill")
                             .font(.subheadline)
                             .foregroundColor(.yellow)
-                        
-                        Text(section.content)
+
+                        markdown(section.content)
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(.primary)

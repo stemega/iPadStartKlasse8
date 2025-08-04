@@ -151,7 +151,7 @@ struct CategoryCard: View {
             }
         }
         .padding(16)
-        .frame(height: 140)
+        .frame(maxWidth: .infinity, minHeight: 140)
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.secondarySystemBackground))
